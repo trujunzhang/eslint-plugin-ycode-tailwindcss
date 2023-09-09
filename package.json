@@ -1,10 +1,10 @@
 {
   "name": "eslint-plugin-ycode-tailwindcss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest ./__tests__",
+    "test": "jest",
     "mocha": "mocha tests --recursive",
     "mocha-debug": "mocha lib/rules/__tests__/no-single-letter.test.js"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/trujunzhang/eslint-plugin-ycode-tailwindcss#readme",
   "devDependencies": {
+    "tailwindcss": "3.3.2",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.16.0",
     "@typescript-eslint/parser": "^5.59.2",
