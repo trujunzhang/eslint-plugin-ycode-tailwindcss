@@ -1,6 +1,6 @@
-const { borderPXDict, roundedDict, textDict, colorsDict } = require('./sizes_colors_dict')
+import { borderPXDict, roundedDict, textDict, colorsDict } from './sizes_colors_dict'
 
-function checkColorAndSizeClassNames(str, appColorDict = colorsDict) {
+export function checkColorAndSizeClassNames(str, appColorDict = colorsDict) {
     /**
     |--------------------------------------------------
     | checking 'color'
@@ -67,7 +67,7 @@ function checkColorAndSizeClassNames(str, appColorDict = colorsDict) {
 // checkColorAndSizeClassNames('rounded-tl-[2px] rounded-[9999px] border-dashed')
 // checkColorAndSizeClassNames('border-dashed border-[4px] border-r-[8px] border-l-[1px]')
 
-function getOriginalTWClassNames(str, appColorDict = colorsDict) {
+export function getOriginalTWClassNames(str, appColorDict = colorsDict) {
     let match = str
     /**
     |--------------------------------------------------
@@ -129,4 +129,3 @@ function getOriginalTWClassNames(str, appColorDict = colorsDict) {
 // getOriginalTWClassNames('rounded-tl-[2px] rounded-[9999px] border-dashed')
 // getOriginalTWClassNames('border-dashed border-[4px] border-r-[8px] border-l-[1px]')
 
-module.exports = { checkColorAndSizeClassNames, getOriginalTWClassNames }

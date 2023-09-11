@@ -5,10 +5,10 @@
 
 'use strict'
 
-const { generateColorDict } = require('../utils/helpers/tailwind_helper')
+import { generateColorDict } from '../utils/helpers/tailwind_helper'
 
 const resolveConfig = require('tailwindcss/resolveConfig')
-const tailwindConfig = require('../../../../tailwind.config')
+import tailwindConfig  from '../../../../tailwind.config'
 const fullConfig = resolveConfig(tailwindConfig)
 
 const appColors = fullConfig.theme.colors

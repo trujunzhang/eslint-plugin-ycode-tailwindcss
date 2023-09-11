@@ -1,12 +1,12 @@
 {/* <h1 class="text-[48px] font-semibold"> Heading 1 </h1> */ }
 // const defaultTheme = require('tailwindcss/defaultTheme');
 
-{/* <div class="bg-[#ef4444] 
-// h-[50px] w-[200px] rounded-[9999px] 
-// border-dashed border-[#b91c1c] 
-// rounded-tl-[2px] rounded-tr-[6px] rounded-br-[8px] rounded-bl-[12px] 
+{/* <div class="bg-[#ef4444]
+// h-[50px] w-[200px] rounded-[9999px]
+// border-dashed border-[#b91c1c]
+// rounded-tl-[2px] rounded-tr-[6px] rounded-br-[8px] rounded-bl-[12px]
 // border-[4px] border-r-[8px] border-l-[1px]"></div> */ }
-const borderPXDict = {
+export const borderPXDict = {
     // common
     "border-[0px]": "border-0",
     "border-[1px]": "border",
@@ -39,7 +39,7 @@ const borderPXDict = {
     "border-b-[8px]": "border-b-8"
 }
 
-const roundedDict = {
+export const roundedDict = {
     // rounded
     "rounded-[2px]": "rounded-sm",
     "rounded-[6px]": "rounded-md",
@@ -82,7 +82,7 @@ const roundedDict = {
     "rounded-bl-[9999px]": "rounded-bl-full"
 }
 
-const textDict = {
+export const textDict = {
     // Sizes
     // 12px	text-xs	0.75rem
     // 14px	text-sm	0.875rem
@@ -125,7 +125,7 @@ const textDict = {
     "text-[128px]": "9xl",
 }
 
-const colorsDict = {
+export const colorsDict = {
     // colors
     "#f8fafc": "slate-50",
     "#f1f5f9": "slate-100",
@@ -370,4 +370,3 @@ const colorsDict = {
     "#4c0519": "rose-950",
 }
 
-module.exports = { borderPXDict, roundedDict, textDict, colorsDict }

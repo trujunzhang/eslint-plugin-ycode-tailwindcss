@@ -1,4 +1,4 @@
-const {defaultColorDict, generateColorDict} = require('./tailwind_helper')
+import { defaultColorDict, generateColorDict } from "./tailwind_helper"
 
 describe('description', () => {
   it('test', () => {

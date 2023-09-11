@@ -1,4 +1,4 @@
-const { checkColorAndSizeClassNames, getOriginalTWClassNames } = require('./classname_utils')
+import { checkColorAndSizeClassNames, getOriginalTWClassNames } from './classname_utils'
 
 describe('checkColorAndSizeClassNames', () => {
   it('sizes', () => {
