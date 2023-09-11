@@ -1,12 +1,11 @@
-"use strict";
-{ /* <h1 class="text-[48px] font-semibold"> Heading 1 </h1> */ }
+{/* <h1 class="text-[48px] font-semibold"> Heading 1 </h1> */ }
 // const defaultTheme = require('tailwindcss/defaultTheme');
-{ /* <div class="bg-[#ef4444]
-// h-[50px] w-[200px] rounded-[9999px]
-// border-dashed border-[#b91c1c]
-// rounded-tl-[2px] rounded-tr-[6px] rounded-br-[8px] rounded-bl-[12px]
-// border-[4px] border-r-[8px] border-l-[1px]"></div> */
-}
+
+{/* <div class="bg-[#ef4444] 
+// h-[50px] w-[200px] rounded-[9999px] 
+// border-dashed border-[#b91c1c] 
+// rounded-tl-[2px] rounded-tr-[6px] rounded-br-[8px] rounded-bl-[12px] 
+// border-[4px] border-r-[8px] border-l-[1px]"></div> */ }
 const borderPXDict = {
     // common
     "border-[0px]": "border-0",
@@ -38,7 +37,8 @@ const borderPXDict = {
     "border-b-[2px]": "border-b-2",
     "border-b-[4px]": "border-b-4",
     "border-b-[8px]": "border-b-8"
-};
+}
+
 const roundedDict = {
     // rounded
     "rounded-[2px]": "rounded-sm",
@@ -80,7 +80,8 @@ const roundedDict = {
     "rounded-bl-[16px]": "rounded-bl-2xl",
     "rounded-bl-[24px]": "rounded-bl-3xl",
     "rounded-bl-[9999px]": "rounded-bl-full"
-};
+}
+
 const textDict = {
     // Sizes
     // 12px	text-xs	0.75rem
@@ -122,7 +123,8 @@ const textDict = {
     "text-[72px]": "7xl",
     "text-[96px]": "8xl",
     "text-[128px]": "9xl",
-};
+}
+
 const colorsDict = {
     // colors
     "#f8fafc": "slate-50",
@@ -366,6 +368,6 @@ const colorsDict = {
     "#9f1239": "rose-800",
     "#881337": "rose-900",
     "#4c0519": "rose-950",
-};
-module.exports = { borderPXDict, roundedDict, textDict, colorsDict };
-//# sourceMappingURL=sizes_colors_dict.js.map
+}
+
+module.exports = { borderPXDict, roundedDict, textDict, colorsDict }
