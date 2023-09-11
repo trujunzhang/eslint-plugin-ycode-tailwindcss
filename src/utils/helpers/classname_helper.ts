@@ -1,3 +1,5 @@
+import { StringHelper } from "../string";
+
 export const screenBreakingTags: Record<string, string> = {
   default: "",
   sm: "sm",
@@ -26,11 +28,8 @@ export class ClassNameHelper {
     "2xl": [],
   };
 
-  replaceAll = (string, search, replace) => {
-    return string.split(search).join(replace);
-  };
   parse(className: string) {
-    const parts = this.replaceAll(className, "  ", " ").split(" ");
+    const parts = StringHelper.replaceAll(className, "  ", " ").split(" ");
 
     parts.forEach((part: string) => {
       if (part === "") return;
@@ -53,7 +52,7 @@ export class ClassNameHelper {
     return this;
   }
 
-  getClassNameObjects(tag: string):Record<string, IClassNameItem> {
+  getClassNameObjects(tag: string): Record<string, IClassNameItem> {
     const array: IClassNameItem[] = this.dict[tag];
     const object: Record<string, IClassNameItem> = {};
     array.forEach(item => {
