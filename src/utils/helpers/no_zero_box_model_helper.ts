@@ -24,7 +24,7 @@ export class NoZeroBoxModelHelper {
       matchDict.push(object.value);
     }
     if (matchDict.length === 4) {
-      // debugger;
+      debugger;
     }
     return matchDict;
   }
@@ -45,5 +45,18 @@ export class NoZeroBoxModelHelper {
     return false;
   }
 
-  emptyZeroBoxModel(className: string) {}
+  emptyZeroBoxModel(className: string) {
+    const instance = new ClassNameHelper();
+    const dict = instance.parse(className).end();
+    for (let i = 0; i < Object.keys(dict).length; i++) {
+      const key = Object.keys(dict)[i];
+      const array = dict[key];
+      const classNameObjects = instance.getClassNameObjects(key);
+      if (this.checkBoxModelZero(classNameObjects, "m").length === 4) {
+        return true;
+      } else if (this.checkBoxModelZero(classNameObjects, "p").length === 4) {
+        return true;
+      }
+    }
+  }
 }

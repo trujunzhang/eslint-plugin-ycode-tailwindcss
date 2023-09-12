@@ -41,12 +41,14 @@ export class ClassNameHelper {
       const prefix = valueSplit.length === 3 ? [valueSplit[0], valueSplit[1]].join("-") : valueSplit[0];
       const suffix = valueSplit.length > 0 ? valueSplit[valueSplit.length - 1] : "empty";
       const array = this.dict[tag];
-      array.push({
-        className: part,
-        value,
-        prefix,
-        suffix,
-      });
+      if (array !== undefined) {
+        array.push({
+          className: part,
+          value,
+          prefix,
+          suffix,
+        });
+      }
     });
 
     return this;
