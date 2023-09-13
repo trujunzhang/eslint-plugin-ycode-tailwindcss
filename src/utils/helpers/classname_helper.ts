@@ -20,7 +20,10 @@ export type IClassNameItem = {
 };
 
 export class ClassNameHelper {
+  static defaultClassNameKey = "default";
+
   dict: Record<ScreenBreakingTag, IClassNameItem[]> = {
+    // dict: Record<any, IClassNameItem[]> = {
     default: [],
     sm: [],
     md: [],
