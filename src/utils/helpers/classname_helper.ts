@@ -10,7 +10,7 @@ export const screenBreakingTags: Record<string, string> = {
   "2xl": "2xl",
 };
 
-type ScreenBreakingTag = "default" | "sm" | "md" | "lg" | "xl" | "2xl";
+export type ScreenBreakingTag = "default" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type IClassNameItem = {
   className: string;
@@ -22,6 +22,10 @@ export type IClassNameItem = {
 export class ClassNameHelper {
   static defaultClassNameKey = "default";
 
+  static getOriginalClassNameKey = (classNameKey: string) => {
+    return classNameKey === ClassNameHelper.defaultClassNameKey ? "" : classNameKey + ":";
+  };
+
   dict: Record<ScreenBreakingTag, IClassNameItem[]> = {
     // dict: Record<any, IClassNameItem[]> = {
     default: [],
@@ -32,7 +36,7 @@ export class ClassNameHelper {
     "2xl": [],
   };
 
-  slit(className: string) {
+  split(className: string) {
     const parts = StringHelper.replaceAll(className, "  ", " ").split(" ");
     return ArrayHelper.remove(parts, "");
   }
@@ -41,8 +45,37 @@ export class ClassNameHelper {
     return parts.join(" ");
   }
 
+  /**
+   * 
+   * @param className 
+   * @returns 
+   * this.dict ={
+  default: [
+    {
+      className: "mt-[24px]",
+      value: "mt-[24px]",
+      prefix: "mt",
+      suffix: "[24px]",
+    },
+  ],
+  sm: [
+  ],
+  md: [
+  ],
+  lg: [
+    {
+      className: "lg:max-w-[80rem]",
+      value: "max-w-[80rem]",
+      prefix: "max-w",
+      suffix: "[80rem]",
+    },
+  ],
+  xl: [
+  ],
+}
+   */
   parse(className: string) {
-    const parts = this.slit(className);
+    const parts = this.split(className);
 
     parts.forEach((part: string) => {
       if (part === "") return;

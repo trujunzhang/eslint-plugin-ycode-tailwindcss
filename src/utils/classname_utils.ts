@@ -1,6 +1,7 @@
 import { borderPXDict, roundedDict, textDict, colorsDict } from "./sizes_colors_dict";
 import { MergeBoxModelHelper } from "./helpers/merge_box_model_helper";
 import { NoZeroBoxModelHelper } from "./helpers/no_zero_box_model_helper";
+import { SpacingHelper } from "./helpers/spacing_helper";
 
 export function checkColorAndSizeClassNames(classNames: string, appColorDict: Record<string, string> = colorsDict) {
   /**
@@ -11,6 +12,15 @@ export function checkColorAndSizeClassNames(classNames: string, appColorDict: Re
   if (new NoZeroBoxModelHelper().isBoxModelZero(classNames)) {
     return true;
   } else if (new MergeBoxModelHelper().needMergeBoxModelZero(classNames)) {
+    return true;
+  }
+
+  /**
+    |--------------------------------------------------
+    | checking 'spacing'
+    |--------------------------------------------------
+    */
+  if (new SpacingHelper().check(classNames)) {
     return true;
   }
 
@@ -89,6 +99,13 @@ export function getOriginalTWClassNames(classNames: string, appColorDict: Record
     */
   match = new NoZeroBoxModelHelper().emptyZeroBoxModel(match);
   match = new MergeBoxModelHelper().mergeZeroBoxModel(match);
+
+ /**
+    |--------------------------------------------------
+    | checking 'spacing'
+    |--------------------------------------------------
+    */
+  match = new SpacingHelper().fix(match);
 
   /**
     |--------------------------------------------------

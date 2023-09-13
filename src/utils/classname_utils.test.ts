@@ -86,7 +86,7 @@ describe("getOriginalTWClassNames", () => {
       getOriginalTWClassNames(
         "border-t-[2px] lg:mb-[64px] lg:mt-[64px]  border-[4px] border-[0px] border-[1px] border-dashed",
       ),
-    ).toBe("border-t-2 lg:my-[64px] border-4 border-0 border border-dashed");
+    ).toBe("border-t-2 lg:my-16 border-4 border-0 border border-dashed");
   });
 });
 

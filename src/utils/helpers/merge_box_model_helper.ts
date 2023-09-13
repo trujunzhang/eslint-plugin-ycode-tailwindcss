@@ -38,7 +38,8 @@ export class MergeBoxModelHelper {
       matchArray.push({
         replace: firstObject.className,
         merge:
-          (classNameKey === ClassNameHelper.defaultClassNameKey ? "" : classNameKey + ":") +
+          ClassNameHelper.getOriginalClassNameKey(classNameKey) +
+          // (classNameKey === ClassNameHelper.defaultClassNameKey ? "" : classNameKey + ":") +
           (boxModelType + key + "-" + firstSuffix),
         remove: endObject.className,
       });
@@ -68,10 +69,10 @@ export class MergeBoxModelHelper {
 
   mergeZeroBoxModel(className: string) {
     const instance = new ClassNameHelper();
-    const parts = instance.slit(className);
+    const parts = instance.split(className);
     const dict = instance.parse(className).end();
 
-    let allMatchDict: MatchItem[] = [];
+    let allMatchArray: MatchItem[] = [];
     for (let i = 0; i < Object.keys(dict).length; i++) {
       const classNameKey = Object.keys(dict)[i];
       const classNameObjects = instance.getClassNameObjects(classNameKey);
@@ -79,15 +80,15 @@ export class MergeBoxModelHelper {
       // const xxx = this.checkBoxModelMerge(classNameKey, classNameObjects, "m");
       // const yyy = this.checkBoxModelMerge(classNameKey, classNameObjects, "p");
 
-      let matchDict = ArrayHelper.merge(
+      let matchArray = ArrayHelper.merge(
         this.checkBoxModelMerge(classNameKey, classNameObjects, "m"),
         this.checkBoxModelMerge(classNameKey, classNameObjects, "p"),
       );
-      allMatchDict = ArrayHelper.merge(allMatchDict, matchDict);
+      allMatchArray = ArrayHelper.merge(allMatchArray, matchArray);
     }
 
     let mergeZeroParts = parts;
-    allMatchDict.forEach((item, index) => {
+    allMatchArray.forEach((item, index) => {
       mergeZeroParts = this.replaceZeroBoxModel(mergeZeroParts, item);
     });
     return instance.toClassName(mergeZeroParts);

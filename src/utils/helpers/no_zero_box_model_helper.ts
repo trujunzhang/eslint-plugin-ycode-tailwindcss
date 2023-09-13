@@ -46,7 +46,7 @@ export class NoZeroBoxModelHelper {
 
   emptyZeroBoxModel(className: string) {
     const instance = new ClassNameHelper();
-    const parts = instance.slit(className);
+    const parts = instance.split(className);
     const dict = instance.parse(className).end();
 
     let allMatchDict: string[] = [];
