@@ -5,16 +5,15 @@
 
 'use strict'
 
+import { getOriginalTWClassNames, checkColorAndSizeClassNames } from '../utils/classname_utils'
 import { generateColorDict } from '../utils/helpers/tailwind_helper'
 
 const resolveConfig = require('tailwindcss/resolveConfig')
-import tailwindConfig  from '../../../../tailwind.config'
+const tailwindConfig = require('../../../../tailwind.config')
+// import tailwindConfig  from '../../../../tailwind.config'
 const fullConfig = resolveConfig(tailwindConfig)
 
-const appColors = fullConfig.theme.colors
-const appColorDict = generateColorDict(appColors)
-
-const { checkColorAndSizeClassNames, getOriginalTWClassNames } = require('../utils/classname_utils')
+const appColorDict = generateColorDict(fullConfig.theme.colors)
 
 function showReport(context, node, tagValue) {
   context.report({
@@ -54,7 +53,7 @@ module.exports = {
     var sourceCode = context.getSourceCode().text
     // console.log('tailwind:color length', (tailwindConfig.theme.extend.colors||[]))
     // console.log("tailwind theme extend colors: xxx",fullConfig.theme.extend.colors)
-    console.log("tailwind file: 123",fullConfig.theme.colors)
+    console.log("tailwind file: 234",fullConfig.theme.colors)
     return {
       Literal: function (node) {
         // JSXAttribute: function (node) {

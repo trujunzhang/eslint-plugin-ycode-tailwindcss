@@ -1,6 +1,5 @@
 import { ClassNameHelper, IClassNameItem } from "./classname_helper";
 import { ArrayHelper } from "../array";
-import { type } from "os";
 
 const boxDirections = {
   y: ["t", "b"],
@@ -36,19 +35,14 @@ export class MergeBoxModelHelper {
       if (firstSuffix !== endSuffix) {
         continue;
       }
-      //   debugger;
       matchArray.push({
         replace: firstObject.className,
         merge:
           (classNameKey === ClassNameHelper.defaultClassNameKey ? "" : classNameKey + ":") +
-          boxModelType +
-          key +
-          "-" +
-          firstSuffix,
+          (boxModelType + key + "-" + firstSuffix),
         remove: endObject.className,
       });
     }
-    // debugger;
     return matchArray;
   }
 
@@ -58,13 +52,44 @@ export class MergeBoxModelHelper {
     for (let i = 0; i < Object.keys(dict).length; i++) {
       const classNameKey = Object.keys(dict)[i];
       const classNameObjects = instance.getClassNameObjects(classNameKey);
-      if (this.checkBoxModelMerge(classNameKey, classNameObjects, "m").length === 4) {
+      if (this.checkBoxModelMerge(classNameKey, classNameObjects, "m").length !== 0) {
+        return true;
+      } else if (this.checkBoxModelMerge(classNameKey, classNameObjects, "p").length !== 0) {
         return true;
       }
-      //    else if (this.checkBoxModelMerge(classNameObjects, "p").length === 4) {
-      // return true;
-      //   }
     }
     return false;
+  }
+
+  private replaceZeroBoxModel(parts: string[], matchItem: MatchItem) {
+    const nextParts = ArrayHelper.change(parts, matchItem.replace, matchItem.merge);
+    return ArrayHelper.remove(nextParts, matchItem.remove);
+  }
+
+  mergeZeroBoxModel(className: string) {
+    const instance = new ClassNameHelper();
+    const parts = instance.slit(className);
+    const dict = instance.parse(className).end();
+
+    let allMatchDict: MatchItem[] = [];
+    for (let i = 0; i < Object.keys(dict).length; i++) {
+      const classNameKey = Object.keys(dict)[i];
+      const classNameObjects = instance.getClassNameObjects(classNameKey);
+
+      // const xxx = this.checkBoxModelMerge(classNameKey, classNameObjects, "m");
+      // const yyy = this.checkBoxModelMerge(classNameKey, classNameObjects, "p");
+
+      let matchDict = ArrayHelper.merge(
+        this.checkBoxModelMerge(classNameKey, classNameObjects, "m"),
+        this.checkBoxModelMerge(classNameKey, classNameObjects, "p"),
+      );
+      allMatchDict = ArrayHelper.merge(allMatchDict, matchDict);
+    }
+
+    let mergeZeroParts = parts;
+    allMatchDict.forEach((item, index) => {
+      mergeZeroParts = this.replaceZeroBoxModel(mergeZeroParts, item);
+    });
+    return instance.toClassName(mergeZeroParts);
   }
 }
