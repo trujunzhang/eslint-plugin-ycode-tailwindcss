@@ -2,12 +2,6 @@ import { NoZeroBoxModelHelper } from "./no_zero_box_model_helper";
 
 describe("function in the NoZeroBoxModelHelper", () => {
   it("isBoxModelZero", () => {
-    const marginEmpty = "mt-[0] mb-[0] ml-[0] mr-[0] flex sm:pr-[0px] sm:gap-[12px]";
-    // const paddingEmpty =
-    // "max-w-[80rem] pt-[0] pb-[0] md:pr-[24px] md:pl-[24px] mr-[0px] flex gap-[24px] items-center pr-[0px] pl-[0px] sm:pr-[0px] sm:gap-[12px]";
-    // const paddingEmptyxxx =
-    // "max-w-[80rem] pt-[0] pb-[0] md:pr-[24px] md:pl-[24px] mr-[0px] flex gap-[24px] items-center pr-[0px] pl-[0px] sm:pr-[0px] sm:gap-[12px]";
-
     /**
      * Margin
      */
@@ -42,5 +36,34 @@ describe("function in the NoZeroBoxModelHelper", () => {
         "pax-w-[80rep]   pt-[0] pb-[0px]   pl-[0] pr-[0px] flex sm:pr-[0px] sm:gap-[12px]",
       ),
     ).toBe(true);
+  });
+
+  it("emptyZeroBoxModel", () => {
+    /**
+     * Margin
+     */
+    expect(
+      new NoZeroBoxModelHelper().emptyZeroBoxModel(
+        " mb-[0px] ml-[0] mr-[0px] flex sm:pr-[0px] mt-[0px]      sm:gap-[12px]",
+      ),
+    ).toBe("flex sm:pr-[0px] sm:gap-[12px]");
+    expect(
+      new NoZeroBoxModelHelper().emptyZeroBoxModel(
+        " mb-[0px] lg:ml-[0] lg:mr-[0px] flex sm:pr-[0px] lg:mt-[0px] lg:mb-[0px]     sm:gap-[12px]",
+      ),
+    ).toBe("mb-[0px] flex sm:pr-[0px] sm:gap-[12px]");
+     /**
+     * Padding
+     */
+     expect(
+      new NoZeroBoxModelHelper().emptyZeroBoxModel(
+        " pb-[0px] pl-[0] pr-[0px] flex sp:mr-[0px] pt-[0px]      sp:gap-[12px]",
+      ),
+    ).toBe("flex sp:mr-[0px] sp:gap-[12px]");
+    expect(
+      new NoZeroBoxModelHelper().emptyZeroBoxModel(
+        " pb-[0px] lg:pl-[0] lg:pr-[0px] flex sp:mr-[0px] lg:pt-[0px] lg:pb-[0px]     sp:gap-[12px]",
+      ),
+    ).toBe("pb-[0px] flex sp:mr-[0px] sp:gap-[12px]");
   });
 });

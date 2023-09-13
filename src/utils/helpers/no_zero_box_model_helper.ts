@@ -1,4 +1,5 @@
 import { ClassNameHelper, IClassNameItem } from "./classname_helper";
+import { ArrayHelper } from "../array";
 
 // const boxModels = {
 //   margin: ["mt-[0]", "mb-[0]", "ml-[0]", "mr-[0]"],
@@ -21,10 +22,10 @@ export class NoZeroBoxModelHelper {
       if (["[0px]", "[0]"].indexOf(suffix) === -1) {
         break;
       }
-      matchDict.push(object.value);
+      matchDict.push(object.className);
     }
     if (matchDict.length === 4) {
-      debugger;
+      // debugger;
     }
     return matchDict;
   }
@@ -34,7 +35,6 @@ export class NoZeroBoxModelHelper {
     const dict = instance.parse(className).end();
     for (let i = 0; i < Object.keys(dict).length; i++) {
       const key = Object.keys(dict)[i];
-      const array = dict[key];
       const classNameObjects = instance.getClassNameObjects(key);
       if (this.checkBoxModelZero(classNameObjects, "m").length === 4) {
         return true;
@@ -47,16 +47,24 @@ export class NoZeroBoxModelHelper {
 
   emptyZeroBoxModel(className: string) {
     const instance = new ClassNameHelper();
+    const parts = instance.slit(className);
     const dict = instance.parse(className).end();
+
+    let allMatchDict: string[] = [];
     for (let i = 0; i < Object.keys(dict).length; i++) {
       const key = Object.keys(dict)[i];
-      const array = dict[key];
       const classNameObjects = instance.getClassNameObjects(key);
-      if (this.checkBoxModelZero(classNameObjects, "m").length === 4) {
-        return true;
-      } else if (this.checkBoxModelZero(classNameObjects, "p").length === 4) {
-        return true;
-      }
+
+      // const xxx = this.checkBoxModelZero(classNameObjects, "m");
+      // const yyy = this.checkBoxModelZero(classNameObjects, "p");
+
+      let matchDict = ArrayHelper.merge(
+        this.checkBoxModelZero(classNameObjects, "m"),
+        this.checkBoxModelZero(classNameObjects, "p"),
+      );
+      allMatchDict = ArrayHelper.merge(allMatchDict, matchDict);
     }
+    const emptyZeroParts = ArrayHelper.removeAll(parts, allMatchDict);
+    return instance.toClassName(emptyZeroParts);
   }
 }

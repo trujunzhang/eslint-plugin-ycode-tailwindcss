@@ -1,4 +1,5 @@
 import { StringHelper } from "../string";
+import { ArrayHelper } from "../array";
 
 export const screenBreakingTags: Record<string, string> = {
   default: "",
@@ -28,8 +29,17 @@ export class ClassNameHelper {
     "2xl": [],
   };
 
-  parse(className: string) {
+  slit(className: string) {
     const parts = StringHelper.replaceAll(className, "  ", " ").split(" ");
+    return ArrayHelper.remove(parts, "");
+  }
+
+  toClassName(parts: string[]) {
+    return parts.join(" ");
+  }
+
+  parse(className: string) {
+    const parts = this.slit(className);
 
     parts.forEach((part: string) => {
       if (part === "") return;

@@ -15,6 +15,14 @@ describe("ArrayHelper", () => {
     expect(ArrayHelper.remove([1, 2, 3], 1)[1]).toBe(3);
   });
 
+  // Tests that the removeAll function removes multiple items from an array correctly
+  it("should remove multiple items from an array correctly", () => {
+    expect(ArrayHelper.removeAll([1, 2, 3, 4, 5], [2, 4]).length).toBe(3);
+    expect(ArrayHelper.removeAll([1, 2, 3, 4, 5], [2, 4])[0]).toBe(1);
+    expect(ArrayHelper.removeAll([1, 2, 3, 4, 5], [2, 4])[1]).toBe(3);
+    expect(ArrayHelper.removeAll([1, 2, 3, 4, 5], [2, 4])[2]).toBe(5);
+  });
+
   // Tests that changing an item in an array successfully returns a new array with the specified item replaced
   it("should change an item in an array successfully", () => {
     expect(ArrayHelper.change([1, 2, 3], 1, 12).length).toBe(3);
