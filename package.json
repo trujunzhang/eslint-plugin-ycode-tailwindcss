@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-ycode-tailwindcss",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A tutorial repository to create your first eslint rule",
   "main": "lib/index.js",
   "scripts": {
