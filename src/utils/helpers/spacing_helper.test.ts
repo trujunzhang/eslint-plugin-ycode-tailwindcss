@@ -11,9 +11,11 @@ describe("SpacingHelper", () => {
   });
 
   it("fix", () => {
-    expect(new SpacingHelper().fix("lg:max-w-[80rem] lg:mt-[24px]")).toBe('lg:max-w-[80rem] lg:mt-6');
-    expect(new SpacingHelper().fix("lg:max-w-[80rem] xl:mx-[24px]")).toBe('lg:max-w-[80rem] xl:mx-6');
-    expect(new SpacingHelper().fix("lg:max-w-[80rem] m-[24px]")).toBe('lg:max-w-[80rem] m-6');
-expect(new SpacingHelper().fix("lg:max-w-[80rem] sm:m-[24px] m-[48px] lg:m-[48px]")).toBe('lg:max-w-[80rem] sm:m-6 m-12 lg:m-12');
+    expect(new SpacingHelper().fix("lg:max-w-[80rem] lg:mt-[24px]")).toBe("lg:max-w-[80rem] lg:mt-6");
+    expect(new SpacingHelper().fix("lg:max-w-[80rem] xl:mx-[24px]")).toBe("lg:max-w-[80rem] xl:mx-6");
+    expect(new SpacingHelper().fix("lg:max-w-[80rem] m-[24px]")).toBe("lg:max-w-[80rem] m-6");
+    expect(new SpacingHelper().fix("lg:max-w-[80rem] sm:m-[24px] m-[48px] lg:m-[48px]")).toBe(
+      "lg:max-w-[80rem] sm:m-6 m-12 lg:m-12",
+    );
   });
 });

@@ -17,6 +17,11 @@ const boxDirections = [
   "my", // margin-between
   "px",
   "py", // padding-between
+  "w",
+  "h",
+  "gap",
+  "space-x",
+  "space-y"
 ];
 
 export class SpacingHelper {
